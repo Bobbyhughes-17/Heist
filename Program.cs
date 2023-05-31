@@ -10,6 +10,8 @@ class Program
         //store team members
         List<TeamMember> teamMembers = new List<TeamMember>();
         
+        Console.WriteLine("Enter Bank Difficulty: ");
+    int userDifficulty = int.Parse(Console.ReadLine());
         while (true)
         {
 
@@ -57,8 +59,22 @@ class Program
        Console.WriteLine();
     }
 
-    int bankDifficultyLevel = 100;
+    Console.WriteLine("Enter amount of trial runs: ");
+    int numOfTrialRuns = int.Parse(Console.ReadLine());
+
+    
+
+
+    int successfulRuns = 0;
+    int failedRuns = 0;
+
+    
+
+    for (int i = 1; i <= numOfTrialRuns; i++)
+    {
+        Console.WriteLine($"-- Trial Run {i} --");
     int totalSkillLevel = 0;
+
 
     foreach (var member in teamMembers)
     {
@@ -68,7 +84,7 @@ class Program
     Random random = new Random();
     int luckValue = random.Next(-10, 10);
 
-    int addedDifficulty = bankDifficultyLevel + luckValue;
+    int addedDifficulty = userDifficulty + luckValue;
 
     Console.WriteLine("-- Heist Report --");
     Console.WriteLine($"Total Team Skill Level: {totalSkillLevel}");
@@ -77,11 +93,18 @@ class Program
     if (totalSkillLevel >= addedDifficulty)
     {
         Console.WriteLine("Success! Skill level was enough!");
+            successfulRuns++;
+
     }
     else
     {
         Console.WriteLine("Failure! Skill level was not enough!");
+            failedRuns++;
     }
+    Console.WriteLine();
+    }
+    Console.WriteLine($"Successful Runs: {successfulRuns}");
+    Console.WriteLine($"Failed Runs: {failedRuns}");
 
 }
 }
