@@ -65,11 +65,16 @@ class Program
         totalSkillLevel += member.SkillLevel;
     }
 
+    Random random = new Random();
+    int luckValue = random.Next(-10, 10);
+
+    int addedDifficulty = bankDifficultyLevel + luckValue;
+
     Console.WriteLine("-- Heist Report --");
     Console.WriteLine($"Total Team Skill Level: {totalSkillLevel}");
-    Console.WriteLine($"Bank Difficulty Level: {bankDifficultyLevel}");
+    Console.WriteLine($"Bank Difficulty Level: {addedDifficulty}");
 
-    if (totalSkillLevel >= bankDifficultyLevel)
+    if (totalSkillLevel >= addedDifficulty)
     {
         Console.WriteLine("Success! Skill level was enough!");
     }
